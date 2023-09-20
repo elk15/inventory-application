@@ -8,6 +8,16 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+// MongoDB connection
+require('dotenv').config();
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(process.env.MONGODB_URI);
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
