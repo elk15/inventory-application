@@ -7,11 +7,12 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/javascripts/ui.js" defer></script>
   </head>
   <body class="bg-neutral-50 min-h-screen flex flex-col">
     <header class="bg-neutral-800 text-neutral-50 p-3 shadow-xl px-4 fixed z-[2] top-0 w-full">
       <div class="flex items-center gap-2">
-        <button aria-label="open-sidebar">
+        <button aria-label="open-sidebar" id="sidebar-btn">
           <svg class="fill-neutral-50 w-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>menu</title><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
         </button>
         <h1 class="font-semibold lg:text-3xl text-2xl">
@@ -31,7 +32,7 @@
       </div>
     </header>
     <div class="bg-neutral-800 text-neutral-50 h-full fixed z-[1] lg:top-[74px] top-[104px] w-[300px] p-3
-    flex flex-col items-start gap-8">
+    flex flex-col items-start gap-8 transition-all" id="sidebar" style="transform: translateX(-100%);">
       <% developers.forEach(developer => { %>
         <div class="flex items-center justify-between w-full">
           <a href=<%= developer.url %> class="text-2xl font-semibold">
@@ -47,7 +48,7 @@
           </div>
         </div>
       <% }) %>
-      <a href="/developer/add" class="text-xl font-semibold bg-neutral-50 text-neutral-800 p-2 rounded-lg self-center">
+      <a href="/developer/add" class="text-xl font-semibold text-neutral-50 self-center">
         + Add Developer
       </a>
     </div>
