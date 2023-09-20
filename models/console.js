@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { millify } = require("millify");
 
 const Schema = mongoose.Schema;
 
@@ -19,6 +20,10 @@ const ConsoleSchema = new Schema({
 
 ConsoleSchema.virtual("url").get(function () {
     return `/console/${this._id}`;
+});
+
+ConsoleSchema.virtual("totalSales_formatted").get(function () {
+    return millify(this.totalSales);
 });
 
 module.exports = mongoose.model("Console", ConsoleSchema);

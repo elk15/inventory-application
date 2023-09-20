@@ -3,8 +3,26 @@
   <%- include('partials/head', {title: title}) %>
   <body class="bg-neutral-50 min-h-screen flex flex-col">
     <%- include('partials/nav', {developers: developers}) %>
-    <main class="flex-1">
-
+    <main class="flex-1 flex flex-col items-center pt-[150px] max-w-[1200px] w-full mx-auto p-3">
+      <h1 class="self-start text-2xl">
+        Consoles Found: <%= consoles.length %>
+      </h1>
+      <hr class="border-2 border-neutral-700 w-full mb-3">
+      <div class="flex flex-wrap content-start justify-center gap-5 max-w-[1200px] w-full p-2">
+        <% consoles.forEach(console => { %>
+          <div class="bg-white h-[300px] min-w-[250px] w-full max-w-[350px] rounded-lg shadow-md text-lg">
+            <img src="/images/javier-martinez-placeholder.jpg" alt="" class="object-cover min-w-[250px] w-full max-w-[400px] h-[200px]">
+            <div class="p-2">
+              <h2 class="font-semibold underline decoration-solid"><a href=<%=console.url%> ><%= console.name %></a></h2>
+              <h3>by <%= console.developer.name %></h3>
+              <div class="flex justify-between">
+                <p>Release year: <%= console.releaseYear %></p>
+                <p>Total sales: <%= console.totalSales_formatted %></p>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
     </main>
   </body>
 </html>

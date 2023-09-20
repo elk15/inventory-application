@@ -8,8 +8,8 @@ exports.index = asyncHandler(async (req, res, next) => {
             .sort({name: 1})
             .exec(),
         Console.find({}, "name releaseYear totalSales developer")
-            .sort({name: 1})
             .populate("developer")
+            .sort({name: 1})
             .exec(),
     ])
     res.render("index", { title: "Console DB", developers: allDevelopers, consoles: allConsoles});
