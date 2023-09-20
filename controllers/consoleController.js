@@ -98,7 +98,10 @@ exports.console_add_post = [
 ]
 
 exports.console_delete_get = asyncHandler(async (req, res, next) => {
-    const gameconsole = await Console.findById(req.params.id).exec();
+    const [gameconsole, allDevelopers] = await Promise.all([
+        Console.findById(req.params.id).exec(),
+        Developer.find().sort({name: 1}).exec(),
+    ]) 
 
     if (gameconsole === null) {
         res.redirect("/");
@@ -107,6 +110,7 @@ exports.console_delete_get = asyncHandler(async (req, res, next) => {
     res.render("console_delete", {
         title: "Delete Console",
         gameconsole: gameconsole,
+        developers: allDevelopers,
     });
 })
 
@@ -120,7 +124,10 @@ exports.console_delete_post = [
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            const gameconsole = await Console.findById(req.params.id).exec();
+            const [gameconsole, allDevelopers] = await Promise.all([
+                Console.findById(req.params.id).exec(),
+                Developer.find().sort({name: 1}).exec(),
+            ]) 
 
             if (gameconsole === null) {
                 res.redirect("/");
@@ -129,6 +136,7 @@ exports.console_delete_post = [
             res.render("console_delete", {
                 title: "Delete Console",
                 gameconsole: gameconsole,
+                developers: allDevelopers,
                 errors: errors.array(),
             });
         } else {
@@ -252,7 +260,10 @@ exports.console_update_post = [
 ]
 
 exports.console_detail = asyncHandler(async (req, res, next) => {
-    const gameconsole = await Console.findById(req.params.id).populate("developer").exec();
+    const [gameconsole, allDevelopers] = await Promise.all([
+        Console.findById(req.params.id).populate("developer").exec(),
+        Developer.find().sort({name: 1}).exec(),
+    ]) 
 
     if (gameconsole === null) {
         const err = new Error("Console not found");
@@ -263,5 +274,6 @@ exports.console_detail = asyncHandler(async (req, res, next) => {
     res.render("console_detail", {
         title: gameconsole.name,
         gameconsole: gameconsole,
+        developers: allDevelopers,
     });
 })
