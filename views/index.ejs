@@ -6,9 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <body class="bg-neutral-50 min-h-screen flex flex-col">
+    <header class="bg-neutral-800 text-neutral-50 p-3 shadow-xl px-4 fixed z-[2] top-0 w-full">
+      <div class="flex items-center gap-2">
+        <button aria-label="open-sidebar">
+          <svg class="fill-neutral-50 w-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>menu</title><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+        </button>
+        <h1 class="font-semibold lg:text-3xl text-2xl">
+          Console DB
+        </h1>
+        <div class="flex items-center flex-1 lg:justify-start justify-end gap-5 ml-5">
+          <div class="flex items-center gap-2 lg:flex hidden">
+            <input type="text" class="w-[500px] rounded-xl text-black text-lg px-2 bg-neutral-50">
+          </div>
+          <a href="/console/add" aria-label="add-console">
+            <svg class="fill-neutral-50 w-[50px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+          </a>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 lg:hidden mt-2">
+        <input type="text" class="w-full rounded-xl text-black text-lg px-2 bg-neutral-50">
+      </div>
+    </header>
+    <div class="bg-neutral-800 text-neutral-50 h-full fixed z-[1] lg:top-[74px] top-[104px] w-[300px] p-3
+    flex flex-col items-start gap-8">
+      <% developers.forEach(developer => { %>
+        <div class="flex items-center justify-between w-full">
+          <a href=<%= developer.url %> class="text-2xl font-semibold">
+            <%= developer.name %>
+          </a>
+          <div class="flex items-center gap-2">
+            <a href=<%= `/developer/${developer._id}/update` %> aria-label="update-developer">
+              <svg class="fill-neutral-50 w-[35px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil</title><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+            </a>
+            <a href=<%= `/developer/${developer._id}/delete` %> aria-label="delete-developer">
+              <svg class="fill-neutral-50 w-[35px]"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>trash-can-outline</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" /></svg>
+            </a>
+          </div>
+        </div>
+      <% }) %>
+      <a href="/developer/add" class="text-xl font-semibold bg-neutral-50 text-neutral-800 p-2 rounded-lg self-center">
+        + Add Developer
+      </a>
+    </div>
+    <main class="flex-1">
+
+    </main>
   </body>
 </html>
