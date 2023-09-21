@@ -111,7 +111,7 @@ exports.developer_delete_post = [
                 errors: errors.array(),
             });
         } else {
-            await Console.findByIdAndRemove(req.body.developerid);
+            await Developer.findByIdAndRemove(req.body.developerid);
             res.redirect("/");
         }
 

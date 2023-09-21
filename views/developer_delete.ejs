@@ -25,7 +25,8 @@
             <h2 class="text-center font-semibold">Are you sure you want to delete developer <%= developer.name %> ?</h2>
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" class="border-neutral-400 border-2 p-1 rounded">
-            <button type="submit" class="bg-green-500 text-neutral-50 rounded p-2 font-semibold">Save</button>
+            <input type="hidden" name="developerid" required value=<%= developer._id %> id="developerid">
+            <button type="submit" class="bg-red-500 text-neutral-50 rounded p-2 font-semibold">Delete</button>
         <% } %>
       </form>
       <ul class="flex flex-col items-center gap-3">
