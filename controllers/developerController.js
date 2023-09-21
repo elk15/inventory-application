@@ -24,9 +24,14 @@ exports.developer_add_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.developer_add_post = [
-    body("name", "Name is required")
+    body("name")
         .trim()
         .notEmpty()
+        .withMessage("Name is required")
+        .isLength({min: 3})
+        .withMessage("Name must be at least 3 characters long")
+        .isLength({max: 50})
+        .withMessage("Name cannot exceed 50 characters")
         .escape(),
     
     asyncHandler(async (req, res, next) => {
