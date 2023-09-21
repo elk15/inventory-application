@@ -143,15 +143,9 @@ exports.developer_update_post = [
                 errors: errors.array(),
             });
         } else {
-            const developerExists = await Developer.findOne({name: req.body.name})
-                .collation({locale: "en", strength: 2})
-                .exec();
-            if (developerExists) {
-                res.redirect(developer.url);
-            } else {
-                const updatedDeveloper = await DEveloper.findByIdAndUpdate(req.params.id, developer, {});
-                res.redirect(updatedDeveloper.url);
-            }
+            console.log('hi!')
+            const updatedDeveloper = await Developer.findByIdAndUpdate(req.params.id, developer, {});
+            res.redirect(updatedDeveloper.url);
         }
 
     }),

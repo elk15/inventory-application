@@ -5,10 +5,14 @@
     <%- include('partials/nav', {developers: developers}) %>
     <main class="flex-1 flex flex-col items-center pt-[150px] max-w-[1200px] w-full mx-auto p-3 gap-10">
       <h1 class="text-3xl text-green-500"><%= title %></h1>
-      <form action="/developer/add" method="post" class="flex flex-col gap-5 text-xl bg-white shadow-md p-5">
-        <label class="" for="name">Name:</label>
+      <form action="" method="post" class="flex flex-col gap-5 text-xl bg-white shadow-md p-5">
+        <label for="name">Name:</label>
         <input type="text" name="name" id="name" class="border-neutral-400 border-2 p-1 rounded" 
         value=<%= (locals.developer ?  developer.name : '') %>>
+        <% if (locals.update) {%>
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" class="border-neutral-400 border-2 p-1 rounded">
+        <% } %>
         <button type="submit" class="bg-green-500 text-neutral-50 rounded p-2 font-semibold">Save</button>
       </form>
       <ul class="flex flex-col items-center gap-3">
