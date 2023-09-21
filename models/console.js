@@ -16,6 +16,7 @@ const ConsoleSchema = new Schema({
    cpu: {type: String},
    memory: {type: String},
    storage: {type: String},
+   imageUrl: {type: String},
 });
 
 ConsoleSchema.virtual("url").get(function () {
