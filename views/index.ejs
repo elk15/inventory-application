@@ -11,7 +11,11 @@
       <div class="flex flex-wrap content-start justify-center gap-5 max-w-[1200px] w-full p-2">
         <% consoles.forEach(console => { %>
           <div class="bg-white h-[300px] min-w-[250px] w-full max-w-[350px] rounded-lg shadow-md text-lg">
-            <img src="/images/javier-martinez-placeholder.jpg" alt="" class="object-cover min-w-[250px] w-full max-w-[400px] h-[200px]">
+            <% if (undefined===console.image.data) { %>
+              <img src="/images/javier-martinez-placeholder.jpg" alt="" class="object-cover min-w-[250px] w-full max-w-[400px] h-[200px]">
+            <% } else { %>
+              <img src="data:image/<%=console.image.contentType%>;base64,<%=console.image.data.toString('base64')%>" alt="" class="object-cover min-w-[250px] w-full max-w-[400px] h-[200px]">
+            <% } %>
             <div class="p-2">
               <h2 class="font-semibold underline decoration-solid"><a href=<%=console.url%> ><%= console.name %></a></h2>
               <h3>by <%= console.developer.name %></h3>
