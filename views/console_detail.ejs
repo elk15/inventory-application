@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head', {title: title}) %>
+  <body class="bg-neutral-50 min-h-screen flex flex-col">
+    <%- include('partials/nav', {developers: developers}) %>
+    <main class="flex-1 flex flex-col items-center pt-[150px] max-w-[1200px] w-full mx-auto p-3">
+      <div class="bg-white shadow-md w-full">
+        <img src="/images/javier-martinez-placeholder.jpg" alt="" class="object-cover w-full h-[400px]">
+        <div class="p-4">
+            <div class="flex items-center gap-2 mb-4">
+                <h1 class="font-semibold text-xl">
+                    <%= gameconsole.name %>
+                </h1>
+                <a href=<%= `/console/${gameconsole._id}/update` %> class="text-green-500 underline">Update</a>
+                <a href=<%= `/console/${gameconsole._id}/delete` %> class="text-red-500 underline">Delete</a>
+            </div>
+            <div class="flex lg:flex-row flex-col gap-6">
+                <div>
+                    <h2 class="text-xl">Description</h2>
+                    <hr class="border-neutral-400 mb-3">
+                    <p>
+                        <%= gameconsole.description %>
+                    </p>
+                </div>
+                <div class="lg:min-w-[300px]">
+                    <h2 class="text-xl">Details</h2>
+                    <hr class="border-neutral-400 mb-3">
+                    <ul class="flex flex-col gap-2">
+                        <li><span class="font-semibold">Release year:</span> <%= gameconsole.releaseYear %></li>
+                        <li><span class="font-semibold">Developer:</span> <%= gameconsole.developer.name %></li>
+                        <li><span class="font-semibold">Total sales:</span> <%= gameconsole.totalSales_formatted %></li>
+                        <li><span class="font-semibold">Release year:</span> <%= gameconsole.releaseYear %></li>
+                        <% if (gameconsole.originalPrice) {%>
+                            <li><span class="font-semibold">Original Price:</span> <%= gameconsole.originalPrice %>€</li>
+                        <% } %>
+                        <% if (gameconsole.controllerInput && gameconsole.controllerInput !== "") {%>
+                            <li><span class="font-semibold">Controller input:</span> <%= gameconsole.controllerInput %></li>
+                        <% } %>
+                        <% if (gameconsole.display && gameconsole.display !== "") {%>
+                            <li><span class="font-semibold">Display:</span> <%= gameconsole.display %></li>
+                        <% } %>
+                        <% if (gameconsole.gpu && gameconsole.gpu !== "") {%>
+                            <li><span class="font-semibold">GPU:</span> <%= gameconsole.gpu %></li>
+                        <% } %>
+                        <% if (gameconsole.cpu && gameconsole.cpu !== "") {%>
+                            <li><span class="font-semibold">CPU:</span> <%= gameconsole.cpu %></li>
+                        <% } %>
+                        <% if (gameconsole.memory && gameconsole.memory !== "") {%>
+                            <li><span class="font-semibold">Memory:</span> <%= gameconsole.memory %></li>
+                        <% } %>
+                        <% if (gameconsole.storage && gameconsole.storage !== "") {%>
+                            <li><span class="font-semibold">Storage:</span> <%= gameconsole.storage %></li>
+                        <% } %>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
