@@ -1,5 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
+const fs = require('fs');
+const path = require('path');
 const Console = require("../models/console");
 const Developer = require("../models/developer");
 require('dotenv').config();
@@ -80,6 +82,13 @@ exports.console_add_post = [
             memory: req.body.memory,
             storage: req.body.storage,
         })
+
+        if (req.file) {
+            gameconsole.image = {
+                data: fs.readFileSync(path.join('./uploads/' + req.file.filename)),
+                contentType: 'image/png',
+            }
+        }
 
         if (!errors.isEmpty()) {
             const allDevelopers = await Developer.find({}).exec();
@@ -241,6 +250,13 @@ exports.console_update_post = [
             storage: req.body.storage,
             _id: req.params.id,
         });
+
+        if (req.file) {
+            gameconsole.image = {
+                data: fs.readFileSync(path.join('./uploads/' + req.file.filename)),
+                contentType: 'image/png',
+            }
+        }
 
         if (!errors.isEmpty()) {
             const allDevelopers = await Developer.find().exec();

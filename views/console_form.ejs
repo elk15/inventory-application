@@ -3,9 +3,9 @@
   <%- include('partials/head', {title: title}) %>
   <body class="bg-neutral-50 min-h-screen flex flex-col">
     <%- include('partials/nav', {developers: developers}) %>
-    <main class="flex-1 flex flex-col items-center pt-[150px] max-w-[1200px] w-full mx-auto p-3 gap-10">
+    <main class="flex-1 flex flex-col items-center pt-[100px] max-w-[1200px] w-full mx-auto p-3 gap-10">
       <h1 class="text-3xl text-green-500"><%= title %></h1>
-      <form action="" method="post" class="flex flex-col w-full lg:w-3/4 gap-5 text-xl bg-white shadow-md p-5">
+      <form action="" method="post" enctype="multipart/form-data" class="flex flex-col w-full lg:w-3/4 gap-5 text-xl bg-white shadow-md p-5">
         <div>
             <h2 class="text-2xl font-semibold">Basic Information</h2>
         </div>
@@ -47,6 +47,10 @@
         <div class="flex flex-col gap-1">
             <label for="description">Description<span class="text-red-500">*</span>: </label>
             <textarea name="description" id="description"  class="border-neutral-400 border-[1px] p-1 rounded"><%= (locals.gameconsole ?  gameconsole.description : '') %></textarea>
+        </div>
+        <div class="flex flex-col gap-1">
+            <label for="image">Upload Image: </label>
+            <input type="file" name="image" id="image"  class="border-neutral-400 border-[1px] p-1 rounded">
         </div>
         <div>
             <h2 class="text-2xl font-semibold">Technical Information</h2>
