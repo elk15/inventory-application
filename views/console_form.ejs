@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head', {title: title}) %>
+  <body class="bg-neutral-50 min-h-screen flex flex-col">
+    <%- include('partials/nav', {developers: developers}) %>
+    <main class="flex-1 flex flex-col items-center pt-[150px] max-w-[1200px] w-full mx-auto p-3 gap-10">
+      <h1 class="text-3xl text-green-500"><%= title %></h1>
+      <form action="" method="post" class="flex flex-col w-full lg:w-3/4 gap-5 text-xl bg-white shadow-md p-5">
+        <div>
+            <h2 class="text-2xl font-semibold">Basic Information</h2>
+            <hr class="border-neutral-500">
+        </div>
+        <div class="flex lg:flex-row gap-2 flex-col">
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="name">Name<span class="text-red-500">*</span>: </label>
+                <input type="text" name="name" id="name" class="border-neutral-400 border-2 p-1 rounded"
+                value=<%= (locals.gameconsole ?  gameconsole.name : '') %>>
+            </div>
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="releaseYear">Release year<span class="text-red-500">*</span>: </label>
+                <input type="number" name="releaseYear" id="releaseYear" class="border-neutral-400 border-2 p-1 rounded"
+                value=<%= (locals.gameconsole ?  gameconsole.releaseYear : '') %>>
+            </div>
+        </div>
+        <div class="flex lg:flex-row gap-2 flex-col">
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="developer">Developer<span class="text-red-500">*</span>: </label>
+                <select name="developer" id="developer" class="border-neutral-400 border-2 p-1 rounded bg-white">
+                    <% developers.forEach(developer =>{ %>
+                        <% if (locals.gameconsole) {%>
+                            <option value=<%= developer._id %> selected=<%= developer._id,toString()===gameconsole.developer._id.toString() ? 'selected' : false%> >
+                                <%= developer.name %>
+                            </option>
+                        <% } else { %>
+                            <option value=<%= developer._id %> >
+                                <%= developer.name %>
+                            </option>
+                        <% } %>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="totalSales">Total sales<span class="text-red-500">*</span>: </label>
+                <input type="number" name="totalSales" id="totalSales" class="border-neutral-400 border-2 p-1 rounded"
+                value=<%= (locals.gameconsole ?  gameconsole.totalSales : '') %>>
+            </div>
+        </div>
+        <div class="flex flex-col gap-1">
+            <label for="description">Description<span class="text-red-500">*</span>: </label>
+            <textarea name="description" id="description"  class="border-neutral-400 border-2 p-1 rounded">
+                <%= (locals.gameconsole ?  gameconsole.description : '') %> 
+            </textarea>
+        </div>
+        <div>
+            <h2 class="text-2xl font-semibold">Technical Information</h2>
+            <hr class="border-neutral-500">
+        </div>
+        <div class="flex lg:flex-row gap-2 flex-col">
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="originalPrice">Original price: </label>
+                <input type="number" name="originalPrice" id="originalPrice" class="border-neutral-400 border-2 p-1 rounded" placeholder="In Euro"
+                value=<%= (locals.gameconsole ?  gameconsole.originalPrice : '') %>>
+            </div>
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="controllerInput">Controller input: </label>
+                <input type="text" name="controllerInput" id="controllerInput" class="border-neutral-400 border-2 p-1 rounded"
+                value=<%= (locals.gameconsole ?  gameconsole.controllerInput : '') %>>
+            </div>
+        </div>
+        <div class="flex lg:flex-row gap-2 flex-col">
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="display">Display: </label>
+                <input type="text" name="display" id="display" class="border-neutral-400 border-2 p-1 rounded" 
+                value=<%= (locals.gameconsole ?  gameconsole.display : '') %>>
+            </div>
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="gpu">GPU: </label>
+                <input type="text" name="gpu" id="gpu" class="border-neutral-400 border-2 p-1 rounded"
+                value=<%= (locals.gameconsole ?  gameconsole.gpu : '') %>>
+            </div>
+        </div>
+        <div class="flex lg:flex-row gap-2 flex-col">
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="cpu">CPU: </label>
+                <input type="text" name="cpu" id="cpu" class="border-neutral-400 border-2 p-1 rounded" 
+                value=<%= (locals.gameconsole ?  gameconsole.cpu : '') %>>
+            </div>
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="memory">Memory: </label>
+                <input type="text" name="memory" id="memory" class="border-neutral-400 border-2 p-1 rounded"
+                value=<%= (locals.gameconsole ?  gameconsole.memory : '') %>>
+            </div>
+        </div>
+        <div class="flex lg:flex-row gap-2 flex-col">
+            <div class="flex flex-col gap-1 flex-1">
+                <label for="storage">Storage: </label>
+                <input type="text" name="storage" id="storage" class="border-neutral-400 border-2 p-1 rounded" 
+                value=<%= (locals.gameconsole ?  gameconsole.storage : '') %>>
+            </div>
+            <% if (locals.update) {%>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" class="border-neutral-400 border-2 p-1 rounded">
+                </div>
+              <% } %>
+        </div>
+        <button type="submit" class="bg-green-500 text-neutral-50 rounded p-2 font-semibold lg:w-1/2 self-center">Save</button>
+      </form>
+      <ul class="flex flex-col items-center gap-3">
+        <% if (locals.errors) { %>
+        <% errors.forEach(error => { %>
+          <li class="text-red-500 text-xl"><%= error.msg %></li>
+        <% }) %>
+        <% } %>
+      </ul>
+    </main>
+  </body>
+</html>

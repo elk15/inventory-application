@@ -16,7 +16,7 @@ exports.console_add_post = [
         .notEmpty()
         .withMessage("Name is required")
         .isLength( {max: 50} )
-        .withMessage("Length cannot exceed 50 characters")
+        .withMessage("Name length cannot exceed 50 characters")
         .escape(),
     body("description", "Description is required")
         .trim()
@@ -27,14 +27,14 @@ exports.console_add_post = [
         .notEmpty()
         .withMessage("Release year is required")
         .isInt( {min: 1972})
-        .withMessage("Must be an integer greater or equal to 1972")
+        .withMessage("Release year must be an integer greater or equal to 1972")
         .escape(),
     body("totalSales")
         .trim()
         .notEmpty()
         .withMessage("Total sales is required")
         .isInt()
-        .withMessage("Must be an integer")
+        .withMessage("Total sales must be an integer")
         .escape(),
     body("developer", "Developer is required")
         .trim()
