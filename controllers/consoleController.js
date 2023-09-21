@@ -250,6 +250,7 @@ exports.console_update_post = [
                 developers: allDevelopers,
                 gameconsole: gameconsole,
                 update: true,
+                errors: errors.array(),
             })
         } else {
             const updatedGameConsole = await Console.findByIdAndUpdate(req.params.id, gameconsole, {});
