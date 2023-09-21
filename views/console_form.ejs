@@ -13,22 +13,22 @@
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
                 <label for="name">Name<span class="text-red-500">*</span>: </label>
-                <input type="text" name="name" id="name" class="border-neutral-400 border-2 p-1 rounded"
-                value=<%= (locals.gameconsole ?  gameconsole.name : '') %>>
+                <input type="text" name="name" id="name" class="border-neutral-400 border-[1px] p-1 rounded"
+                <%- (locals.gameconsole &&  `value="${gameconsole.name}"`) %> >
             </div>
             <div class="flex flex-col gap-1 flex-1">
                 <label for="releaseYear">Release year<span class="text-red-500">*</span>: </label>
-                <input type="number" name="releaseYear" id="releaseYear" class="border-neutral-400 border-2 p-1 rounded"
-                value=<%= (locals.gameconsole ?  gameconsole.releaseYear : '') %>>
+                <input type="number" name="releaseYear" id="releaseYear" class="border-neutral-400 border-[1px] p-1 rounded"
+                <%- (locals.gameconsole &&  `value="${gameconsole.releaseYear}"`) %> >
             </div>
         </div>
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
                 <label for="developer">Developer<span class="text-red-500">*</span>: </label>
-                <select name="developer" id="developer" class="border-neutral-400 border-2 p-1 rounded bg-white">
+                <select name="developer" id="developer" class="border-neutral-400 border-[1px] p-1 rounded bg-white">
                     <% developers.forEach(developer =>{ %>
                         <% if (locals.gameconsole) {%>
-                            <option value=<%= developer._id %> selected=<%= developer._id,toString()===gameconsole.developer._id.toString() ? 'selected' : false%> >
+                            <option value=<%= developer._id %> <%- developer._id.toString()===gameconsole.developer._id.toString() ? 'selected' : ''%> >
                                 <%= developer.name %>
                             </option>
                         <% } else { %>
@@ -41,15 +41,13 @@
             </div>
             <div class="flex flex-col gap-1 flex-1">
                 <label for="totalSales">Total sales<span class="text-red-500">*</span>: </label>
-                <input type="number" name="totalSales" id="totalSales" class="border-neutral-400 border-2 p-1 rounded"
-                value=<%= (locals.gameconsole ?  gameconsole.totalSales : '') %>>
+                <input type="number" name="totalSales" id="totalSales" class="border-neutral-400 border-[1px] p-1 rounded"
+                <%- (locals.gameconsole &&  `value="${gameconsole.totalSales}"`) %> >
             </div>
         </div>
         <div class="flex flex-col gap-1">
             <label for="description">Description<span class="text-red-500">*</span>: </label>
-            <textarea name="description" id="description"  class="border-neutral-400 border-2 p-1 rounded">
-                <%= (locals.gameconsole ?  gameconsole.description : '') %> 
-            </textarea>
+            <textarea name="description" id="description"  class="border-neutral-400 border-[1px] p-1 rounded"><%= (locals.gameconsole ?  gameconsole.description : '') %></textarea>
         </div>
         <div>
             <h2 class="text-2xl font-semibold">Technical Information</h2>
@@ -58,49 +56,49 @@
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
                 <label for="originalPrice">Original price: </label>
-                <input type="number" name="originalPrice" id="originalPrice" class="border-neutral-400 border-2 p-1 rounded" placeholder="In Euro"
-                value=<%= (locals.gameconsole ?  gameconsole.originalPrice : '') %>>
+                <input type="number" name="originalPrice" id="originalPrice" class="border-neutral-400 border-[1px] p-1 rounded" placeholder="In Euro"
+                <%- (locals.gameconsole.originalPrice &&  `value="${gameconsole.originalPrice}"`) %> >
             </div>
             <div class="flex flex-col gap-1 flex-1">
                 <label for="controllerInput">Controller input: </label>
-                <input type="text" name="controllerInput" id="controllerInput" class="border-neutral-400 border-2 p-1 rounded"
-                value=<%= (locals.gameconsole ?  gameconsole.controllerInput : '') %>>
+                <input type="text" name="controllerInput" id="controllerInput" class="border-neutral-400 border-[1px] p-1 rounded"
+                <%- (locals.gameconsole.controllerInput &&  `value="${gameconsole.controllerInput}"`) %> >
             </div>
         </div>
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
                 <label for="display">Display: </label>
-                <input type="text" name="display" id="display" class="border-neutral-400 border-2 p-1 rounded" 
-                value=<%= (locals.gameconsole ?  gameconsole.display : '') %>>
+                <input type="text" name="display" id="display" class="border-neutral-400 border-[1px] p-1 rounded" 
+                <%- (locals.gameconsole.display &&  `value="${gameconsole.display}"`) %> >
             </div>
             <div class="flex flex-col gap-1 flex-1">
                 <label for="gpu">GPU: </label>
-                <input type="text" name="gpu" id="gpu" class="border-neutral-400 border-2 p-1 rounded"
-                value=<%= (locals.gameconsole ?  gameconsole.gpu : '') %>>
+                <input type="text" name="gpu" id="gpu" class="border-neutral-400 border-[1px] p-1 rounded"
+                <%- (locals.gameconsole.gpu &&  `value="${gameconsole.gpu}"`) %> >
             </div>
         </div>
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
                 <label for="cpu">CPU: </label>
-                <input type="text" name="cpu" id="cpu" class="border-neutral-400 border-2 p-1 rounded" 
-                value=<%= (locals.gameconsole ?  gameconsole.cpu : '') %>>
+                <input type="text" name="cpu" id="cpu" class="border-neutral-400 border-[1px] p-1 rounded" 
+                <%- (locals.gameconsole.cpu &&  `value="${gameconsole.cpu}"`) %> >
             </div>
             <div class="flex flex-col gap-1 flex-1">
                 <label for="memory">Memory: </label>
-                <input type="text" name="memory" id="memory" class="border-neutral-400 border-2 p-1 rounded"
-                value=<%= (locals.gameconsole ?  gameconsole.memory : '') %>>
+                <input type="text" name="memory" id="memory" class="border-neutral-400 border-[1px] p-1 rounded"
+                <%- (locals.gameconsole.memory &&  `value="${gameconsole.memory}"`) %> >
             </div>
         </div>
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
                 <label for="storage">Storage: </label>
-                <input type="text" name="storage" id="storage" class="border-neutral-400 border-2 p-1 rounded" 
-                value=<%= (locals.gameconsole ?  gameconsole.storage : '') %>>
+                <input type="text" name="storage" id="storage" class="border-neutral-400 border-[1px] p-1 rounded" 
+                <%- (locals.gameconsole.storage && `value="${gameconsole.storage}"`) %> >
             </div>
             <% if (locals.update) {%>
-                <div>
+                <div class="flex flex-col gap-1 flex-1">
                     <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" class="border-neutral-400 border-2 p-1 rounded">
+                    <input type="password" name="password" id="password" class="border-neutral-400 border-[1px] p-1 rounded">
                 </div>
               <% } %>
         </div>
