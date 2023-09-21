@@ -7,11 +7,11 @@
       <h1 class="text-3xl text-green-500"><%= title %></h1>
       <form action="" method="post" class="flex flex-col gap-5 text-xl bg-white shadow-md p-5">
         <label for="name">Name:</label>
-        <input type="text" name="name" id="name" class="border-neutral-400 border-2 p-1 rounded" 
-        value=<%= (locals.developer ?  developer.name : '') %>>
+        <input type="text" name="name" id="name" class="border-neutral-400 border-[1px] p-1 rounded" 
+        <%- `value=${(locals.developer ?  developer.name : '')}` %>>
         <% if (locals.update) {%>
           <label for="password">Password:</label>
-          <input type="password" name="password" id="password" class="border-neutral-400 border-2 p-1 rounded">
+          <input type="password" name="password" id="password" class="border-neutral-400 border-[1px] p-1 rounded">
         <% } %>
         <button type="submit" class="bg-green-500 text-neutral-50 rounded p-2 font-semibold">Save</button>
       </form>

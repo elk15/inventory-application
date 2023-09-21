@@ -8,7 +8,6 @@
       <form action="" method="post" class="flex flex-col w-full lg:w-3/4 gap-5 text-xl bg-white shadow-md p-5">
         <div>
             <h2 class="text-2xl font-semibold">Basic Information</h2>
-            <hr class="border-neutral-500">
         </div>
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
@@ -51,49 +50,48 @@
         </div>
         <div>
             <h2 class="text-2xl font-semibold">Technical Information</h2>
-            <hr class="border-neutral-500">
         </div>
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
                 <label for="originalPrice">Original price: </label>
                 <input type="number" step="0.01" name="originalPrice" id="originalPrice" class="border-neutral-400 border-[1px] p-1 rounded" placeholder="In Euro"
-                <%- (locals.gameconsole.originalPrice &&  `value="${gameconsole.originalPrice}"`) %> >
+                <%- (locals.gameconsole && locals.gameconsole.originalPrice &&  `value="${gameconsole.originalPrice}"`) %> >
             </div>
             <div class="flex flex-col gap-1 flex-1">
                 <label for="controllerInput">Controller input: </label>
                 <input type="text" name="controllerInput" id="controllerInput" class="border-neutral-400 border-[1px] p-1 rounded"
-                <%- (locals.gameconsole.controllerInput &&  `value="${gameconsole.controllerInput}"`) %> >
+                <%- (locals.gameconsole && locals.gameconsole.controllerInput &&  `value="${gameconsole.controllerInput}"`) %> >
             </div>
         </div>
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
                 <label for="display">Display: </label>
                 <input type="text" name="display" id="display" class="border-neutral-400 border-[1px] p-1 rounded" 
-                <%- (locals.gameconsole.display &&  `value="${gameconsole.display}"`) %> >
+                <%- (locals.gameconsole && locals.gameconsole.display &&  `value="${gameconsole.display}"`) %> >
             </div>
             <div class="flex flex-col gap-1 flex-1">
                 <label for="gpu">GPU: </label>
                 <input type="text" name="gpu" id="gpu" class="border-neutral-400 border-[1px] p-1 rounded"
-                <%- (locals.gameconsole.gpu &&  `value="${gameconsole.gpu}"`) %> >
+                <%- (locals.gameconsole && locals.gameconsole.gpu &&  `value="${gameconsole.gpu}"`) %> >
             </div>
         </div>
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
                 <label for="cpu">CPU: </label>
                 <input type="text" name="cpu" id="cpu" class="border-neutral-400 border-[1px] p-1 rounded" 
-                <%- (locals.gameconsole.cpu &&  `value="${gameconsole.cpu}"`) %> >
+                <%- (locals.gameconsole && locals.gameconsole.cpu &&  `value="${gameconsole.cpu}"`) %> >
             </div>
             <div class="flex flex-col gap-1 flex-1">
                 <label for="memory">Memory: </label>
                 <input type="text" name="memory" id="memory" class="border-neutral-400 border-[1px] p-1 rounded"
-                <%- (locals.gameconsole.memory &&  `value="${gameconsole.memory}"`) %> >
+                <%- (locals.gameconsole && locals.gameconsole.memory &&  `value="${gameconsole.memory}"`) %> >
             </div>
         </div>
         <div class="flex lg:flex-row gap-2 flex-col">
             <div class="flex flex-col gap-1 flex-1">
                 <label for="storage">Storage: </label>
                 <input type="text" name="storage" id="storage" class="border-neutral-400 border-[1px] p-1 rounded" 
-                <%- (locals.gameconsole.storage && `value="${gameconsole.storage}"`) %> >
+                <%- (locals.gameconsole && locals.gameconsole.storage && `value="${gameconsole.storage}"`) %> >
             </div>
             <% if (locals.update) {%>
                 <div class="flex flex-col gap-1 flex-1">

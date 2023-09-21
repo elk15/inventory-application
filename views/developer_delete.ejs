@@ -24,8 +24,8 @@
         <% } else { %>
             <h2 class="text-center font-semibold">Are you sure you want to delete developer <%= developer.name %> ?</h2>
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" class="border-neutral-400 border-2 p-1 rounded">
-            <input type="hidden" name="developerid" required value=<%= developer._id %> id="developerid">
+            <input type="password" name="password" id="password" class="border-neutral-400 border-[1px] p-1 rounded">
+            <input type="hidden" name="developerid" required <%- `value="${developer._id}"` %> id="developerid">
             <button type="submit" class="bg-red-500 text-neutral-50 rounded p-2 font-semibold">Delete</button>
         <% } %>
       </form>
