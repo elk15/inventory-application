@@ -8,6 +8,7 @@ require('dotenv').config();
 exports.developer_get = asyncHandler(async (req, res, next) => {
     const [allConsoles, developer, allDevelopers] = await Promise.all([
         Console.find({developer: req.params.id}, "name releaseYear totalSales developer")
+        .populate("developer")
         .sort({name: 1})
         .exec(),
         Developer.findById(req.params.id).exec(),
