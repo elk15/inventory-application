@@ -64,9 +64,22 @@ exports.developer_add_post = [
 ]
 
 exports.developer_delete_get = asyncHandler(async (req, res, next) => {
-    const allDevelopers = await Developer.find().sort({name: 1}).exec();
+    const [developer, allDeveloperConsoles, allDevelopers] = await Promise.all([
+        Developer.findById(req.params.id).exec(),
+        Console.find({developer: req.params.id}, "name").exec(),
+        Developer.find().sort({name: 1}).exec(),
+    ]) 
 
-    res.render("developer_delete", {title: "Delete Developer", developers: allDevelopers,});
+    if (developer === null) {
+        res.redirect("/");
+    }
+
+    res.render("developer_delete", {
+        title: "Delete Developer", 
+        developers: allDevelopers, 
+        developer: developer,
+        developer_consoles: allDeveloperConsoles,
+    });
 })
 
 exports.developer_delete_post = [
@@ -79,8 +92,9 @@ exports.developer_delete_post = [
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
-            const [developer, allDevelopers] = await Promise.all([
+            const [developer,allDeveloperConsoles, allDevelopers] = await Promise.all([
                 Developer.findById(req.params.id).exec(),
+                Console.find({developer: req.params.id}, "name").exec(),
                 Developer.find().sort({name: 1}).exec(),
             ]) 
 
@@ -93,6 +107,7 @@ exports.developer_delete_post = [
                 title: "Delete Developer",
                 developer: developer,
                 developers: allDevelopers,
+                developer_consoles: allDeveloperConsoles,
                 errors: errors.array(),
             });
         } else {

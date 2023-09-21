@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head', {title: title}) %>
+  <body class="bg-neutral-50 min-h-screen flex flex-col">
+    <%- include('partials/nav', {developers: developers}) %>
+    <main class="flex-1 flex flex-col items-center pt-[150px] max-w-[1200px] w-full mx-auto p-3 gap-10">
+      <h1 class="text-3xl text-red-500"><%= title %></h1>
+      <form action="" method="post" class="flex flex-col gap-5 text-xl bg-white shadow-md p-5">
+        <% if (locals.developer_consoles.length > 0) { %>
+            <h2 class="text-center font-semibold">In order to delete developer <%= developer.name %> you must first delete all their consoles</h2>
+            <ul class="list-decimal p-3 self-center">
+                <% developer_consoles.forEach(gameconsole => { %>
+                    <li class="text-xl">
+                        <a href=<%=gameconsole.url%> class="font-semibold mr-5">
+                            <%= gameconsole.name %>
+                        </a>
+                        <a href=<%= `/console/${gameconsole._id}/delete` %> class="text-red-500 underline">
+                            Delete
+                        </a>
+                    </li>
+                  <% }) %>
+            </ul>
+
+        <% } else { %>
+            <h2 class="text-center font-semibold">Are you sure you want to delete developer <%= developer.name %> ?</h2>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" class="border-neutral-400 border-2 p-1 rounded">
+            <button type="submit" class="bg-green-500 text-neutral-50 rounded p-2 font-semibold">Save</button>
+        <% } %>
+      </form>
+      <ul class="flex flex-col items-center gap-3">
+        <% if (locals.errors) { %>
+        <% errors.forEach(error => { %>
+          <li class="text-red-500 text-xl"><%= error.msg %></li>
+        <% }) %>
+        <% } %>
+      </ul>
+    </main>
+  </body>
+</html>
