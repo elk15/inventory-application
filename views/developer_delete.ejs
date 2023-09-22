@@ -10,7 +10,7 @@
             <h2 class="text-center font-semibold">In order to delete developer <%= developer.name %> you must first delete all their consoles</h2>
             <ul class="list-decimal p-3 self-center">
                 <% developer_consoles.forEach(gameconsole => { %>
-                    <li class="text-xl">
+                    <li class="text-xl flex justify-between">
                         <a href=<%=gameconsole.url%> class="font-semibold mr-5">
                             <%= gameconsole.name %>
                         </a>
