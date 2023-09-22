@@ -5,7 +5,11 @@
     <%- include('partials/nav', {developers: developers}) %>
     <main class="flex-1 flex flex-col items-center pt-[100px] max-w-[1200px] w-full mx-auto p-3">
       <div class="bg-white shadow-md w-full">
-        <img src="/images/javier-martinez-placeholder.jpg" alt="" class="object-cover w-full h-[400px]">
+        <% if (gameconsole.imageUrl && gameconsole.imageUrl !== "") { %>
+            <img src="<%- gameconsole.imageUrl %>" alt="" class="object-cover w-full h-[400px]">
+        <% } else { %>
+            <img src="/images/javier-martinez-placeholder.jpg" alt="" class="object-cover w-full h-[400px]">
+        <% } %>
         <div class="p-4">
             <div class="flex items-center gap-2 mb-4">
                 <h1 class="font-semibold text-xl">
@@ -19,7 +23,7 @@
                     <h2 class="text-xl">Description</h2>
                     <hr class="border-neutral-400 mb-3">
                     <p>
-                        <%- gameconsole.description %>
+                        <%- gameconsole.description%>
                     </p>
                 </div>
                 <div class="lg:min-w-[300px]">

@@ -62,6 +62,9 @@ exports.console_add_post = [
     body("storage")
         .trim()
         .escape(),
+    body("imageUrl")
+        .trim()
+        .escape(),
     
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
@@ -79,6 +82,7 @@ exports.console_add_post = [
             cpu: req.body.cpu,
             memory: req.body.memory,
             storage: req.body.storage,
+            imageUrl: req.body.imageUrl,
         })
 
         if (!errors.isEmpty()) {
@@ -218,6 +222,9 @@ exports.console_update_post = [
     body("storage")
         .trim()
         .escape(),
+    body("imageUrl")
+        .trim()
+        .escape(),
     body("password", "Incorrect Password")
         .trim()
         .equals(process.env.SECRET_PASSWORD)
@@ -239,6 +246,7 @@ exports.console_update_post = [
             cpu: req.body.cpu,
             memory: req.body.memory,
             storage: req.body.storage,
+            imageUrl: req.body.imageUrl,
             _id: req.params.id,
         });
 

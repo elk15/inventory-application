@@ -48,6 +48,11 @@
             <label for="description">Description<span class="text-red-500">*</span>: </label>
             <textarea name="description" id="description"  class="border-neutral-400 border-[1px] p-1 rounded"><%= (locals.gameconsole ?  gameconsole.description : '') %></textarea>
         </div>
+        <div class="flex flex-col gap-1">
+            <label for="imageUrl">Image url: </label>
+            <input type="text" name="imageUrl" id="imageUrl" class="border-neutral-400 border-[1px] p-1 rounded"
+            <%- (locals.gameconsole &&  locals.gameconsole.imageUrl && `value="${gameconsole.imageUrl}"`) %> >
+        </div>
         <div>
             <h2 class="text-2xl font-semibold">Technical Information</h2>
         </div>

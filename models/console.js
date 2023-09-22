@@ -27,4 +27,5 @@ ConsoleSchema.virtual("totalSales_formatted").get(function () {
     return millify(this.totalSales);
 });
 
+
 module.exports = mongoose.model("Console", ConsoleSchema);

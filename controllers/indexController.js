@@ -7,7 +7,7 @@ exports.index = asyncHandler(async (req, res, next) => {
         Developer.find({})
             .sort({name: 1})
             .exec(),
-        Console.find({}, "name releaseYear totalSales developer")
+        Console.find({}, "name releaseYear totalSales developer imageUrl")
             .populate("developer")
             .sort({name: 1})
             .exec(),
